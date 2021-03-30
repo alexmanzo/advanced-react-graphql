@@ -14,7 +14,7 @@ import { perPage } from '../config';
 // GraphQL query. Name exactly what fields we want to get back.
 export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
-    allProducts(skip: $skip, first: $first) {
+    allProducts(first: $first, skip: $skip) {
       id
       name
       price

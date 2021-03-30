@@ -13,7 +13,7 @@ import DisplayError from './ErrorMessage';
 import { perPage } from '../config';
 
 // Keystone allows you to query metadata, like overall count.
-const PAGINATION_QUERY = gql`
+export const PAGINATION_QUERY = gql`
   query PAGINATION_QUERY {
     _allProductsMeta {
       count
