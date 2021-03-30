@@ -8,6 +8,7 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Product from './Product';
+import DisplayError from './ErrorMessage';
 
 // GraphQL query. Name exactly what fields we want to get back.
 export const ALL_PRODUCTS_QUERY = gql`
@@ -37,7 +38,7 @@ export default function Products() {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message} </p>;
+  if (error) return <DisplayError error={error} />;
 
   return (
     <div>
