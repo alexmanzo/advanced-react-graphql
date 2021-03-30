@@ -1,3 +1,9 @@
+/**
+ * @file Update Product component.
+ *
+ * Form to update a product.
+ */
+
 import gql from 'graphql-tag';
 import { useMutation, useQuery } from '@apollo/client';
 import { SINGLE_ITEM_QUERY } from './SingleProduct';
@@ -25,10 +31,12 @@ const UPDATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function UpdateProduct({ productId }) {
+  // We'll fetch the item by its ID to get initial values.
   const { data, loading, error } = useQuery(SINGLE_ITEM_QUERY, {
     variables: { id: productId },
   });
 
+  // Mutation will return updated data that we've asked for.
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading },
@@ -37,28 +45,19 @@ export default function UpdateProduct({ productId }) {
   // useForm custom hook.
   const { inputs, handleChange, resetForm, clearForm } = useForm(data?.Product);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <DisplayError error={error} />;
-
   // We need the form to handle the updates.
   return (
     <Form
       onSubmit={async (e) => {
         e.preventDefault();
-        const res = await updateProduct({
+        await updateProduct({
           variables: {
             id: productId,
-
             name: inputs.name,
             description: inputs.description,
             price: inputs.price,
           },
         });
-        // clearForm();
-        // Router.push({
-        //   pathname: `/product/${res.data.createProduct.id}`,
-        // });
-        // TODO: Handle submit.
       }}
     >
       <DisplayError error={error || updateError} />
