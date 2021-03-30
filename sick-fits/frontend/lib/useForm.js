@@ -4,11 +4,18 @@
  * Custom hook for managing form input.
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function useForm(initial = {}) {
   // We can pass in an initial form state if we have default values.
   const [inputs, setInputs] = useState(initial);
+
+  // Watch for initial value change (e.g. UpdateProduct);
+  const initialValues = Object.values(initial).join();
+
+  useEffect(() => {
+    setInputs(initial);
+  }, [initialValues]);
 
   // Function to be called from onChange events.
   function handleChange(e) {
