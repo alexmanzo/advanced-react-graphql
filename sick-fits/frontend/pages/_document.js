@@ -1,3 +1,10 @@
+/**
+ * @file Document
+ *
+ * Custom Document in Next.js: https://nextjs.org/docs/advanced-features/custom-document
+ * Enables server side rendering for styled components: https://styled-components.com/docs/advanced#server-side-rendering
+ */
+
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 

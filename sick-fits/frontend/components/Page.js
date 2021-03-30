@@ -1,3 +1,9 @@
+/**
+ * @file Page component.
+ *
+ * Wrapper around all other components. Persistent layout/styles across entire app.
+ */
+
 import { PropTypes } from 'prop-types';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './Header';

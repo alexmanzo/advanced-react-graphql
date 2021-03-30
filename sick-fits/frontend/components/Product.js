@@ -1,3 +1,9 @@
+/**
+ * @file Product component.
+ *
+ * Displays a single product.
+ */
+
 import Link from 'next/link';
 import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';

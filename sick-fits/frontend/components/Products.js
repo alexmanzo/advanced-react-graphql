@@ -1,8 +1,15 @@
+/**
+ * @file Products component.
+ *
+ * Lists all products.
+ */
+
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Product from './Product';
 
+// GraphQL query. Name exactly what fields we want to get back.
 export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY {
     allProducts {

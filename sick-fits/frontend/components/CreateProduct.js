@@ -1,3 +1,9 @@
+/**
+ * @file Create product component.
+ *
+ * Form to add new products.
+ */
+
 import { useMutation } from '@apollo/client';
 import Router from 'next/router';
 import gql from 'graphql-tag';
@@ -6,6 +12,7 @@ import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
 import { ALL_PRODUCTS_QUERY } from './Products';
 
+// GraphQL mutation, basically a POST request.
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
     $name: String!
@@ -31,18 +38,20 @@ const CREATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function CreateProduct() {
+  // useForm custom hook.
   const { inputs, handleChange, resetForm, clearForm } = useForm({
-    name: 'boobs',
+    name: 'some product',
     image: {},
     price: 12345,
     description: 'something is cool',
   });
 
+  // useMutation is from Apollo.
   const [createProduct, { loading, error, data }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
-      variables: inputs,
-      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+      variables: inputs, // automatically provided variables
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }], // So app knows there is new data, not to just load from cache.
     }
   );
 

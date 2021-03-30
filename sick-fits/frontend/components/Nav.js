@@ -1,3 +1,9 @@
+/**
+ * @file Navigation component.
+ *
+ * Site navigation.
+ */
+
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 
