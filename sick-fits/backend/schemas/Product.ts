@@ -1,3 +1,9 @@
+/**
+ * @file Product schema.
+ *
+ * Schema for type in keystone.
+ */
+
 import { integer, relationship, select, text } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
 
@@ -11,6 +17,7 @@ export const Product = list({
       },
     }),
     photo: relationship({
+      // Keystone supports two way relationships.
       ref: 'ProductImage.product',
       ui: {
         displayMode: 'cards',

@@ -1,3 +1,9 @@
+/**
+ * @file formatMoney helper function.
+ *
+ * Custom logic for formatting prices.
+ */
+
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',

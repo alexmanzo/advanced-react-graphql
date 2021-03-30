@@ -1,3 +1,9 @@
+/**
+ * @file Seed data.
+ *
+ * Provided by default with starter files.
+ */
+
 function timestamp() {
   // sometime in the last 30 days
   const stampy =

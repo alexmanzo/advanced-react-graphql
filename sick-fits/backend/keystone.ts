@@ -1,3 +1,9 @@
+/**
+ * @file Keystone config.
+ *
+ * Configuration for Keystone CMS.
+ */
+
 import 'dotenv/config';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import { createAuth } from '@keystone-next/auth';
@@ -14,14 +20,15 @@ const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
 
 const sessionConfig = {
-  maxAge: 60 * 60 * 24 * 360, // How long should they stay signed in?
+  // How long should they stay signed in?
+  maxAge: 60 * 60 * 24 * 360, // sec * min * hours * days
   secret: process.env.COOKIE_SECRET,
 };
 
 const { withAuth } = createAuth({
   // Which schema is responsible for this?
   listKey: 'User',
-  // Which fiels in user identifies the user?
+  // Which field in user identifies the user?
   identityField: 'email',
   secretField: 'password',
   initFirstItem: {
@@ -39,7 +46,7 @@ export default withAuth(
       },
     },
     db: {
-      adapter: 'mongoose',
+      adapter: 'mongoose', // TODO: Now deprecated in Keystone, may need to change.
       url: databaseURL,
       async onConnect(keystone) {
         if (process.argv.includes('--seed-data')) {
@@ -53,7 +60,7 @@ export default withAuth(
       ProductImage,
     }),
     ui: {
-      isAccessAllowed: ({ session }) => !!session?.data,
+      isAccessAllowed: ({ session }) => !!session?.data, // The !! ensures we return boolean.
     },
     session: withItemData(statelessSessions(sessionConfig), {
       User: 'id',
