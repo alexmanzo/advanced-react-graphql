@@ -1,7 +1,7 @@
 /**
  * @file Pagination Field.
  *
- * Caching strategy for all prodcuts. By default, Apollo tries to
+ * Caching strategy for all products. By default, Apollo tries to
  * cache everything in initial page groups, but we want the products
  * to be cached as one list, so we write our own strategy.
  */
